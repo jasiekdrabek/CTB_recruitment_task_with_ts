@@ -29,3 +29,8 @@ button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+span {
+  margin-top: 20px;
+  font-size: 1rem;
+}

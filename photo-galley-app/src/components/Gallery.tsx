@@ -7,7 +7,8 @@ const Gallery: React.FC<GalleryProps> = ({ photos }) => {
         <div id="photo-gallery" className="gallery">
             {photos.map(photo => (
                 <div key={photo.id} className="photo-item fade-in">
-                    <img src={photo.thumbnailUrl} alt={photo.title} />
+                    {/*<img src={'https://placehold.co/' + photo.thumbnailUrl.substring(28,31)} alt={photo.title} />*/}
+                    <img src={ photo.thumbnailUrl} alt={photo.title} />
                     <p>{photo.title}</p>
                 </div>
             ))}

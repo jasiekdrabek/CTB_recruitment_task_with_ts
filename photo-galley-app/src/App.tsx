@@ -3,7 +3,6 @@ import Gallery from './components/Gallery';
 import Pagination from './components/Pagination';
 import LimitSelector from './components/LimitSelector';
 import { Photo } from './interfaces/Photo';
-import logo from './logo.svg';
 import './App.css';
 
 const App: React.FC = () => {
@@ -57,8 +56,8 @@ const App: React.FC = () => {
   return (
       <div className="container">
           <h1>Photo Gallery</h1>
-          {isLoading && <div id="loader">Loading...</div>}
-          {error && <div id="error">{error}</div>}
+          {isLoading && <div id="loader" className='loader'>Loading...</div>}
+          {error && <div id="error" className='error'>{error}</div>}
           {!isLoading && !error && <Gallery photos={photos} />}
           <Pagination
               currentPage={currentPage}
