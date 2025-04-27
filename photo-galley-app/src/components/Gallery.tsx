@@ -1,9 +1,5 @@
 import React from 'react';
-import { Photo } from '../interfaces/Photo';
-
-interface GalleryProps {
-    photos: Photo[];
-}
+import { GalleryProps } from '../interfaces/GalleryProps';
 
 const Gallery: React.FC<GalleryProps> = ({ photos }) => {
     return (
