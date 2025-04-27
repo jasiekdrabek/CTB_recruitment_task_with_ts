@@ -12,7 +12,7 @@ button {
   padding: 16px 20px;
   font-size: 1rem;
   border-radius: 15px;
-  background-color: #e50914;
+  background-color: #4681f4;
   color: #fff;
   border: none;
   font-weight: 600;
@@ -21,7 +21,7 @@ button {
 }
 
 button:hover {
-  background-color: #d64c53;
+  background-color: #5783db;
   transform: scale(1.05);
 }
 
