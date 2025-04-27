@@ -2,6 +2,7 @@ import React from 'react';
 import './Gallery.css'
 import { GalleryProps } from '../interfaces/GalleryProps';
 
+// Display photos in the gallery
 const Gallery: React.FC<GalleryProps> = ({ photos }) => {
     return (
         <div id="photo-gallery" className="gallery">

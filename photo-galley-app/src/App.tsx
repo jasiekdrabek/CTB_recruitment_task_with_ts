@@ -6,6 +6,7 @@ import { Photo } from './interfaces/Photo';
 import './App.css';
 
 const App: React.FC = () => {
+  //set variables
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -21,6 +22,7 @@ const App: React.FC = () => {
       fetchPhotos();
   }, [currentPage, limit]);
 
+  // Fetch total number of photos from API
   const fetchTotalPhotos = async () => {
       try {
           const response = await fetch('https://jsonplaceholder.typicode.com/photos');
@@ -34,6 +36,7 @@ const App: React.FC = () => {
       }
   };
 
+  // Fetch photos from API
   const fetchPhotos = async () => {
       setIsLoading(true);
       setError('');
@@ -51,6 +54,7 @@ const App: React.FC = () => {
       }
   };
 
+  // Calculate if there are more photos
   const maxPage = Math.ceil(totalPhotos / limit);
 
   return (
