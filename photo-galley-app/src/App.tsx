@@ -1,26 +1,73 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Gallery from './components/Gallery';
+import Pagination from './components/Pagination';
+import LimitSelector from './components/LimitSelector';
+import { Photo } from './interfaces/Photo';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [totalPhotos, setTotalPhotos] = useState(0);
+
+  useEffect(() => {
+      fetchTotalPhotos();
+  }, []);
+
+  useEffect(() => {
+      fetchPhotos();
+  }, [currentPage, limit]);
+
+  const fetchTotalPhotos = async () => {
+      try {
+          const response = await fetch('https://jsonplaceholder.typicode.com/photos');
+          if (!response.ok) {
+              throw new Error('Failed to fetch total photos');
+          }
+          const data: Photo[] = await response.json();
+          setTotalPhotos(data.length);
+      } catch (err) {
+          setError('Error fetching total number of photos.');
+      }
+  };
+
+  const fetchPhotos = async () => {
+      setIsLoading(true);
+      setError('');
+      try {
+          const response = await fetch(`https://jsonplaceholder.typicode.com/photos?_page=${currentPage}&_limit=${limit}`);
+          if (!response.ok) {
+              throw new Error('Failed to fetch photos');
+          }
+          const data: Photo[] = await response.json();
+          setPhotos(data);
+      } catch (err) {
+          setError('Error fetching photos.');
+      } finally {
+          setIsLoading(false);
+      }
+  };
+
+  const maxPage = Math.ceil(totalPhotos / limit);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="container">
+          <h1>Photo Gallery</h1>
+          <LimitSelector limit={limit} setLimit={setLimit} />
+          {isLoading && <div id="loader">Loading...</div>}
+          {error && <div id="error">{error}</div>}
+          {!isLoading && !error && <Gallery photos={photos} />}
+          <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              maxPage={maxPage}
+          />
+      </div>
   );
-}
+};
 
 export default App;
