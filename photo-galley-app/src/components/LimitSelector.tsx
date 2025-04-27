@@ -1,4 +1,5 @@
 import React from 'react';
+import './LimitSelector.css'
 import { LimitSelectorProps } from '../interfaces/LimitSelectorProps';
 
 const LimitSelector: React.FC<LimitSelectorProps> = ({ limit, setLimit }) => {
@@ -10,10 +11,12 @@ const LimitSelector: React.FC<LimitSelectorProps> = ({ limit, setLimit }) => {
                 value={limit}
                 onChange={(e) => setLimit(Number(e.target.value))}
             >
-                <option value={5}>5</option>
-                <option value={10}>10</option>
-                <option value={20}>20</option>
-                <option value={50}>50</option>
+                <option value="5">5 photos</option>
+                <option value="10" selected>10 photos</option>
+                <option value="20">20 photos</option>
+                <option value="50">50 photos</option>
+                <option value="2500">2500 photos</option>
+                <option value="5000">5000 photos</option>
             </select>
         </div>
     );

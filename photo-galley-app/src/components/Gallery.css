@@ -1,0 +1,53 @@
+/* Gallery grid */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 150px);
+  gap: 15px;
+}
+
+/* Each photo item */
+.photo-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(5, 5, 5, 0.5);
+}
+
+/* Thumbnail images */
+.photo-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.photo-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Photo title */
+.photo-item p {
+  margin-top: 20px;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* Fade-in animation for photos */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}

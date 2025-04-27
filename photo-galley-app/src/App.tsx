@@ -57,7 +57,6 @@ const App: React.FC = () => {
   return (
       <div className="container">
           <h1>Photo Gallery</h1>
-          <LimitSelector limit={limit} setLimit={setLimit} />
           {isLoading && <div id="loader">Loading...</div>}
           {error && <div id="error">{error}</div>}
           {!isLoading && !error && <Gallery photos={photos} />}
@@ -66,6 +65,7 @@ const App: React.FC = () => {
               setCurrentPage={setCurrentPage}
               maxPage={maxPage}
           />
+          <LimitSelector limit={limit} setLimit={setLimit} />
       </div>
   );
 };
