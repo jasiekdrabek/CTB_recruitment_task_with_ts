@@ -33,4 +33,10 @@ button:disabled {
 span {
   margin-top: 20px;
   font-size: 1rem;
+  cursor: pointer;
+}
+
+.current-page {
+  font-size: 1.3rem;
+  font-weight: bold;
 }
